@@ -18,9 +18,9 @@ All you need to do is to create a dictionary with the names of columns and what'
 
 fields = {
     'field_1' : 10 # note that the first field ends in the position #10. Count it to checkout what I'm saying...
-    'field_2' : 20 
-    'field_3' : 30 
-    'field_4' : 40 # note that the last field ends in the position #40
+    , 'field_2' : 20 
+    , 'field_3' : 30 
+    , 'field_4' : 40 # note that the last field ends in the position #40
 }
 
 file_conversor = FileConversor()
@@ -33,7 +33,7 @@ file_conversor.to_csv("source_file.txt", "dest_file.csv")
 
 This will generate a csv file as it follows that you can use in any other tool (Pandas, for example):
 
-```python
+```text
 field_1;field_2;field_3;field_4
 01;X2;A3;123
 01;Y2;B3;456

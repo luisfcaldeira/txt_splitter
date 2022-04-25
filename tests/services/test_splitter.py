@@ -13,6 +13,6 @@ def test_split_many_columns():
     fields = splitter.split_by_pos(line, 4, 8, 11)
 
     assert len(fields) == 3
-    assert fields[0] == 'ABC '
-    assert fields[1] == 'DEF '
+    assert fields[0] == 'ABC'
+    assert fields[1] == 'DEF'
     assert fields[2] == 'GHI'
