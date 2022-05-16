@@ -32,4 +32,4 @@ file_conversor.add_field('PREOFC', 134)
 file_conversor.add_field('PREOFV', 147)
 file_conversor.add_field('PREABE', 69)
 
-file_conversor.to_csv("example.txt", "example.csv")
+file_conversor.to_csv("example.txt", "example.csv", open_mode='w')
