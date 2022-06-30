@@ -6,13 +6,18 @@ from domain.conversors.line_part_conversors import ConversorDictToLineParts
 from services.string_service import StringService
 
 class FileConversor():
+
+    def __init__(self, fields : dict) -> None:
+        self.__set_file_configuration(fields)
+        self.__encoding = 'utf-8'
      
     @property
     def line_parts(self) -> LineParts:
         return self.__line_parts
 
-    def __init__(self, fields : dict) -> None:
-        self.__set_file_configuration(fields)
+    def set_encoding(self, encoding: str):
+        if isinstance(encoding, str):
+            self.__encoding = encoding
         
     def __set_file_configuration(self, fields : dict) -> None:
         conversor = ConversorDictToLineParts()
@@ -29,11 +34,11 @@ class FileConversor():
         self.__set_header(self.__line_parts.get_all_field_names(), sep)
         splitter = Splitter()
         
-        with open(file_src, "r", encoding="ISO-8859-1") as fp:
+        with open(file_src, "r", encoding=self.__encoding) as fp:
             lines = fp.readlines()
 
         size = 0
-        with open(file_destination, open_mode, encoding='utf-8') as fp:
+        with open(file_destination, open_mode, encoding=self.__encoding) as fp:
             if ignore_header == False:
                 fp.writelines(self.__header)
             
@@ -44,10 +49,8 @@ class FileConversor():
                 splitted = splitter.split_by_pos(line, *self.__line_parts.get_all_positions())
                 data_line = StringService.join_it_in_a_line(splitted, sep)
 
-                size = size + len(line.encode('utf-8'))
+                size = size + len(line.encode(self.__encoding))
                 print(str(round(size/size_source * 100, 2)).rjust(5, ' '), '%' ,end='\r')
-
-                
 
                 fp.writelines(data_line)
 

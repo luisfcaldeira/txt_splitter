@@ -1,4 +1,5 @@
 from application.file_conversor import FileConversor
+import pathlib
 
 fields = {
     'TIPREG' : 2
@@ -32,4 +33,10 @@ file_conversor.add_field('PREOFC', 134)
 file_conversor.add_field('PREOFV', 147)
 file_conversor.add_field('PREABE', 69)
 
-file_conversor.to_csv("example.txt", "example.csv", open_mode='w')
+path = pathlib.Path(__file__).parent.resolve()
+
+file_conversor.to_csv(f"{path}\data\COTAHIST_A2018.TXT", "CONTAHIST.csv", open_mode='w')
+file_conversor.to_csv(f"{path}\data\COTAHIST_A2019.TXT", "CONTAHIST.csv", open_mode='a')
+file_conversor.to_csv(f"{path}\data\COTAHIST_A2020.TXT", "CONTAHIST.csv", open_mode='a')
+file_conversor.to_csv(f"{path}\data\COTAHIST_A2021.TXT", "CONTAHIST.csv", open_mode='a')
+file_conversor.to_csv(f"{path}\data\COTAHIST_A2022.TXT", "CONTAHIST.csv", open_mode='a')
